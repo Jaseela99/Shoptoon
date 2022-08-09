@@ -1,5 +1,9 @@
-import {createStore} from "redux"
+import {createStore,applyMiddleware} from "redux"
 import reducers from "./reducers/index"
 
-const store =createStore(reducers,{})
+const middleware = (store)=>(next)=>(action)=>{
+    console.log(action);
+    next(action)
+}
+const store =createStore(reducers,{},applyMiddleware(middleware))
 export default store
